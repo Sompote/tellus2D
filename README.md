@@ -75,9 +75,8 @@ write a PDF report with pictures of the results. It has two engines: **Jev**, wh
 fast and lets Tellus code choose from a fixed set of actions, and the **TigrimOS agent**,
 an LLM agent that plans its own steps with all of Tellus's tools. Each engine needs its
 own API key, which you enter under **Settings** in the chat panel, and this key is
-separate from the Tellus licence.
-
-![The chat panel set to the TigrimOS agent, with the tigrim path, API address, model and a saved API key](docs/images/tellus-chat-tigrimos.png)
+separate from the Tellus licence. [Step 3](#step-3-optional-set-up-the-chat-agent) explains
+how to set up the agent.
 
 **Files.** Projects are saved as small `.tellus` files, a few kB each, because the results
 are recalculated rather than stored. Tellus can also read PLAXIS 2D results files
@@ -122,6 +121,58 @@ Tellus checks the key with the licence server and opens the normal workspace. Th
 then shows who the copy is licensed to, which confirms that activation worked.
 
 ![Tellus after activation, with "Licensed to" shown at the right of the top bar](docs/images/activated.png)
+
+## Step 3 (optional): set up the chat agent
+
+The chat assistant is optional, because every model can also be built by hand in Input.
+We recommend the **TigrimOS agent** with a model from **OpenRouter**, a service that gives
+one API key for many AI models and charges per use. Its recommended model is
+**DeepSeek V4.1 Flash** (`deepseek/deepseek-v4.1-flash-1017`), the model Tellus was tested
+with, which is fast and cheap, at US$0.15 per million input tokens and US$0.60 per
+million output tokens (OpenRouter's prices on 18 October 2026). Payment for the model
+goes to OpenRouter and is separate from the Tellus subscription.
+
+**Get an OpenRouter key.**
+
+1. Sign up at [openrouter.ai](https://openrouter.ai) with an e-mail, Google or GitHub
+   account.
+2. Add credit under **Settings → Credits**, because paid models need a balance. A few
+   dollars lasts a long time with this model.
+3. Open [openrouter.ai/keys](https://openrouter.ai/keys), click **Create Key**, give it a
+   name such as "Tellus", and copy the key, which starts with `sk-or-v1-`. OpenRouter
+   shows it only once, so paste it into Tellus straight away or keep it somewhere safe.
+
+**Enter it in Tellus.**
+
+1. Click **Chat assistant** at the top right, choose **TigrimOS agent** in the list next to
+   **Assistant**, and click **Settings**.
+2. Leave **tigrim** empty, because Tellus finds the agent program that comes with it.
+3. Fill in the three fields:
+
+   | Field | Value |
+   |---|---|
+   | API URL | `https://openrouter.ai/api/v1` |
+   | Model | `deepseek/deepseek-v4.1-flash-1017` |
+   | API key | your OpenRouter key (`sk-or-v1-…`) |
+
+4. Click **Save key** and then **Done**. The key stays on your computer, in your user
+   settings folder, and Tellus gives it only to the agent.
+
+![The chat assistant's settings for the TigrimOS agent, with the OpenRouter API URL, the model deepseek/deepseek-v4.1-flash-1017 and a saved API key](docs/images/agent-settings.png)
+
+**Python for the agent** is optional. When Python with numpy is installed, Tellus finds it
+and the agent may use it for numbers, such as a hand check of a result, and without it the
+agent still works. The **Agent workspace** is the only folder the agent may write to, and
+on macOS its code runs in the system sandbox.
+
+Now describe a problem in the chat, for example "a 3 m wide strip footing on 5 m of dense
+sand over stiff clay carries 150 kPa, the water table is 2 m down; what is the settlement
+and the factor of safety?". The agent builds the model on screen, calculates it and
+answers with the solver's numbers, and each of its changes can be checked and undone.
+Other OpenRouter models also work, as do other providers with an OpenAI-compatible API,
+when you change the URL and the model. The model must support tool calling, and a weak
+model makes more mistakes in building the model, so check its results as you would a
+junior engineer's.
 
 ## Licence details and moving to another computer
 
