@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/tellus-logo.png" alt="Tellus logo" width="420">
+</p>
+
 # Tellus: download and licence
 
 Tellus is a plane-strain geotechnical finite element program for engineers. It builds and
