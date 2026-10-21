@@ -21,8 +21,9 @@ and it runs entirely on your own computer, so a calculation needs no other FE so
 or network service once the licence is active. You build a model in the **Input**
 workspace, calculate it with the built-in solver, and read the results in **Output**,
 whereas the **Chat assistant** can do the same steps from a description in words. The
-same model can also be driven by AI agents such as Claude Code through Tellus's MCP
-server, so an agent and an engineer can work on one project file.
+same model can also be driven by AI assistants such as Claude and ChatGPT through Tellus's
+MCP server ([Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)), so an
+assistant and an engineer can work on one project file.
 
 **Modelling.** The Input workspace follows six steps, each a tab across the top: Soil,
 Geometry, Structures, Mesh, Flow conditions and Staged construction. The soil comes from
@@ -174,6 +175,86 @@ when you change the URL and the model. The model must support tool calling, and 
 model makes more mistakes in building the model, so check its results as you would a
 junior engineer's.
 
+## Step 4 (optional): connect Claude or ChatGPT through MCP
+
+Tellus can also be driven from an AI assistant outside the program, such as Claude Desktop,
+Claude Code, the ChatGPT desktop app or Codex, through the Model Context Protocol (MCP).
+The command `tellus --mcp` starts Tellus without a window as an MCP server that the
+assistant launches on your computer and talks to over stdin and stdout. It gives the
+assistant 29 tools to build a model, calculate it and read the results, so a request such as
+"model a 2 m strip footing on 4 m of sand over soft clay, apply 80 kPa, and give me the
+settlement and the factor of safety" is answered with the solver's numbers. The server uses
+the same licence as the program, so activate Tellus first ([Step 2](#step-2-activate-tellus)),
+and it works on ordinary `.tellus` files, so a project the assistant saves opens in Tellus
+for checking.
+
+Each assistant needs the full path of the Tellus program:
+
+| System | Path of the program |
+|---|---|
+| macOS | `/Applications/Tellus.app/Contents/MacOS/tellus` |
+| Windows | the full path of `Tellus.exe`, for example `C:\Tools\Tellus\Tellus.exe` (written `C:\\Tools\\Tellus\\Tellus.exe` inside JSON) |
+
+**Claude Desktop.** Open **Settings → Developer → Edit Config**, which opens
+`claude_desktop_config.json` (in `~/Library/Application Support/Claude` on macOS and
+`%APPDATA%\Claude` on Windows). Add Tellus under `mcpServers`, save the file and restart
+Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "tellus": {
+      "command": "/Applications/Tellus.app/Contents/MacOS/tellus",
+      "args": ["--mcp"]
+    }
+  }
+}
+```
+
+The Tellus tools then appear under the tools button in a new chat, and Claude asks before it
+uses each one unless you allow it for the conversation.
+
+**Claude Code.** Register the server once for your user account, and the tools load in
+the next session, where `/mcp` lists them:
+
+```sh
+claude mcp add -s user tellus -- /Applications/Tellus.app/Contents/MacOS/tellus --mcp
+```
+
+**ChatGPT desktop app and Codex.** The ChatGPT desktop app, the Codex command line and the
+Codex IDE extension start local MCP servers from one shared file, `~/.codex/config.toml`
+(`%USERPROFILE%\.codex\config.toml` on Windows). Add Tellus with one command,
+
+```sh
+codex mcp add tellus -- /Applications/Tellus.app/Contents/MacOS/tellus --mcp
+```
+
+or write the entry into the file by hand:
+
+```toml
+[mcp_servers.tellus]
+command = "/Applications/Tellus.app/Contents/MacOS/tellus"
+args = ["--mcp"]
+```
+
+`codex mcp list` shows the server, `/mcp` lists it inside Codex, and the desktop app shows
+it under **Settings → MCP servers**. ChatGPT in the web browser and on the phone is
+different, because it reaches MCP servers only over HTTPS on the internet and cannot start a
+program on your computer. Tellus has no web server of its own, so use the desktop app or
+Codex. OpenAI's Secure MCP Tunnel can pass a local server through to ChatGPT on the web, but
+we have not tried it with Tellus.
+
+**Options and checks.** To start with a project loaded, add it to the arguments, for
+example `["--mcp", "--open", "/path/to/slope.tellus"]`, and add `"--autosave",
+"/path/to/slope.tellus"` to save the model there after every change, so you can open the
+file in Tellus to see what the assistant built. Ask the assistant to save the project
+before you open it otherwise. If the tools do not appear, run the program path with
+`--licence` in a terminal to confirm that the computer is activated, and check that the path
+in the configuration is complete. The model you choose in Claude or ChatGPT is paid for
+under your own Anthropic or OpenAI account, separately from the Tellus subscription. The
+Windows configurations follow the same format but have not yet been tried on a Windows PC,
+so please tell us at [tellusfem@gmail.com](mailto:tellusfem@gmail.com) if one fails.
+
 ## Licence details and moving to another computer
 
 Click the **Licensed to …** label in the top bar to see the key, the plan, the end of the
@@ -213,7 +294,8 @@ On Windows the result appears just after the prompt returns, because `Tellus.exe
 windowed program, so press **Enter** once to get a clean prompt again.
 
 The headless MCP server for AI agents (`tellus --mcp`) uses the same licence, so it works
-once the computer is activated.
+once the computer is activated, and [Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)
+shows how to connect it to Claude or ChatGPT.
 
 ## When activation fails
 
