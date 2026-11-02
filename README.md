@@ -8,13 +8,15 @@ Tellus is a plane-strain geotechnical finite element program for engineers. It b
 calculates excavations, embankments, slopes and foundations with staged construction,
 consolidation and safety analysis, and its chat assistant can build a model from a
 description in English or Thai. This repository holds the ready-built program for macOS
-and Windows. Tellus runs on a subscription, so it needs a licence key, which you activate
-once on each computer.
+and Windows. Without a licence key it runs as the free academic edition, which is meant for
+teaching and learning and calculates small models, whereas a licence key, activated once on
+each computer, lifts every limit.
 
 **Quick start.** Download the program for your system from the [Download](#download)
-section, e-mail [tellusfem@gmail.com](mailto:tellusfem@gmail.com) for a licence key, and
-paste the key into the activation screen the first time Tellus starts. Activation needs
-the internet once, and after that Tellus runs on your computer like any desktop program.
+section and start it. Choose **Continue with the free academic edition** to use it at once
+without a key, or paste a licence key from [tellusfem@gmail.com](mailto:tellusfem@gmail.com)
+into the activation screen. Activation needs the internet once, and after that Tellus runs
+on your computer like any desktop program.
 
 ![Tellus with the chat agent: for a slope under normal water and drawdown the agent ran two Safety phases, wrote the PDF report and showed the failure mechanisms, while Output shows the drawdown mechanism](docs/images/tellus-agent-report.png)
 
@@ -91,14 +93,37 @@ are recalculated rather than stored. Tellus can also read PLAXIS 2D results file
 
 | System | File | Notes |
 |---|---|---|
-| macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.1-macos-universal.dmg`](macos/Tellus-0.1.1-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
-| Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.1-windows-x64.zip`](windows/Tellus-0.1.1-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
+| macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.2-macos-universal.dmg`](macos/Tellus-0.1.2-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
+| Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.2-windows-x64.zip`](windows/Tellus-0.1.2-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
 
 The programs are not signed by a registered developer, so the system warns you the first
 time. On macOS, right-click **Tellus** in Applications, choose **Open**, and confirm with
 **Open**. On Windows, choose **More info** and then **Run anyway** when SmartScreen
 appears. Tellus needs about 90 MB of disk, and 4 GB of memory is enough for ordinary
 models, whereas 8 GB is comfortable for fine meshes.
+
+## The free academic edition
+
+Tellus needs no key for teaching and learning. At the first start click **Continue with
+the free academic edition**, and Tellus remembers the choice and opens in it from then on.
+The free edition needs no internet, and it calculates any model that stays within these
+limits, which are enough for the footing, slope, retaining wall and embankment problems of
+a soil mechanics or foundation engineering course:
+
+| Item | Free academic edition | With a licence key |
+|---|---|---|
+| Mesh | up to 1,000 elements | no limit |
+| Phases | the initial phase and 2 more | no limit |
+| Soil models | Linear elastic, Mohr-Coulomb, Soft Soil | also Hardening Soil, HS small, Soft Soil Creep, hypoplastic sand |
+| Structures | up to 2 plates, 2 geogrids and 2 struts or anchors, no embedded piles | no limit |
+| PLAXIS export | no | yes |
+| Reports and result plots | watermarked "not for commercial use" | no watermark |
+
+A model beyond a limit is still built and saved, but Tellus explains which limit stops the
+calculation, and the same rule applies to the chat assistant and to the MCP server. The
+top bar shows **Free academic edition**, and clicking it lists the limits and takes a
+licence key, so you can activate later without restarting. The free edition is for
+teaching, learning and student exercises only, not for design or other commercial work.
 
 ## Step 1: get a licence key
 
@@ -110,7 +135,11 @@ computers:
 - your affiliation (university or company),
 - your e-mail address,
 - how many computers will run Tellus,
-- the plan you need (academic, standard or trial).
+- the plan you need: academic (free research keys for staff and thesis students, from a
+  university e-mail address), trial or standard.
+
+The [contact form on the Tellus website](https://tellusfem.github.io/#contact) sends the
+same request.
 
 You will receive a key of the form `TLS-XXXX-XXXX-XXXX-XXXX-XXXX`. Keep it private,
 because anyone with the key could use one of your seats.
@@ -188,8 +217,8 @@ assistant launches on your computer and talks to over stdin and stdout. It gives
 assistant 29 tools to build a model, calculate it and read the results, so a request such as
 "model a 2 m strip footing on 4 m of sand over soft clay, apply 80 kPa, and give me the
 settlement and the factor of safety" is answered with the solver's numbers. The server uses
-the same licence as the program, so activate Tellus first ([Step 2](#step-2-activate-tellus)),
-and it works on ordinary `.tellus` files, so a project the assistant saves opens in Tellus
+the same licence as the program, so it has the limits of the free academic edition until
+the computer is activated ([Step 2](#step-2-activate-tellus)), and it works on ordinary `.tellus` files, so a project the assistant saves opens in Tellus
 for checking.
 
 Each assistant needs the full path of the Tellus program:
@@ -297,8 +326,8 @@ Tellus.exe --deactivate
 On Windows the result appears just after the prompt returns, because `Tellus.exe` is a
 windowed program, so press **Enter** once to get a clean prompt again.
 
-The headless MCP server for AI agents (`tellus --mcp`) uses the same licence, so it works
-once the computer is activated, and [Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)
+The headless MCP server for AI agents (`tellus --mcp`) uses the same licence, so it has every
+feature once the computer is activated and the free edition's limits before, and [Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)
 shows how to connect it to Claude or ChatGPT.
 
 ## When activation fails
