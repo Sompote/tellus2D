@@ -111,6 +111,18 @@ how to set up the agent.
 are recalculated rather than stored. Tellus can also read PLAXIS 2D results files
 (`.p2dx`) and export a model as PLAXIS 2D commands.
 
+## Calibration papers
+
+Tellus is checked against closed-form solutions, an established FE program and field
+measurements, and the reports are in [`docs/papers`](docs/papers). They state where the
+program agrees with its references and where it does not.
+
+| Paper | Pages | What it covers |
+|---|---|---|
+| [Calibration of Tellus 2D, an agent-driven plane-strain geotechnical finite element program](docs/papers/Tellus2D_calibration_static.pdf) | 17 | Verification tests against closed-form solutions and a reference FE code, three lessons of the PLAXIS 2D Tutorial Manual, and four field cases: the Sukhumvit station excavation, the Muar embankment built to failure, vacuum preloading at Suvarnabhumi and embankments on soil-cement columns |
+| [Calibration of the dynamic analysis of Tellus 2D](docs/papers/Tellus2D_calibration_dynamic.pdf) | 20 | Wave propagation and damping solutions, DEEPSOIL, Strata and SHAKE91, the Garner Valley downhole array, PM4Silt, Austrian Dam and the Bangkok basin. Dynamic analysis is not in 0.1.4 yet |
+| [Embedded pile rows in Tellus 2D](docs/papers/Tellus2D_calibration_embedded_piles.pdf) | 9 | Axial and lateral stiffness and capacity of the pile row against closed-form solutions, and a piled bridge abutment against PLAXIS 2D and 3D. It is a development report: the abutment comparison is partial, and it documents an updated mesh option that is not in 0.1.4 |
+
 ## Download
 
 | System | File | Notes |

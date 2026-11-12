@@ -317,4 +317,7 @@ Say so plainly when a request needs one of these, instead of approximating:
   worked case studies, and the cases the program is calibrated on. It was written with a
   later development version, so its chapters on dynamics, updated mesh and the cloud GPU do
   not apply to 0.1.4.
+- `docs/papers`: the calibration papers, which show how far a result of each kind of
+  analysis can be trusted. Read the relevant one before you tell the user how accurate a
+  result is.
 - Help: tellusfem@gmail.com.
