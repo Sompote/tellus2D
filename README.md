@@ -7,8 +7,8 @@
 Tellus is a plane-strain geotechnical finite element program for engineers. It builds and
 calculates excavations, embankments, slopes and foundations with staged construction,
 consolidation and safety analysis, and its chat assistant can build a model from a
-description in English or Thai. This repository holds the ready-built program for macOS
-and Windows. Without a licence key it runs as the free academic edition, which is meant for
+description in English or Thai. This repository holds the ready-built program for macOS,
+Windows and Linux. Without a licence key it runs as the free academic edition, which is meant for
 teaching and learning and calculates small models, whereas a licence key, activated once on
 each computer, lifts every limit.
 
@@ -117,12 +117,13 @@ are recalculated rather than stored. Tellus can also read PLAXIS 2D results file
 |---|---|---|
 | macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.4-macos-universal.dmg`](macos/Tellus-0.1.4-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
 | Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.4-windows-x64.zip`](windows/Tellus-0.1.4-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
+| Linux, 64-bit (x86-64), glibc 2.31 or later: Ubuntu 20.04, Debian 11, Fedora 32 and later | [`linux/Tellus-0.1.4-linux-x64.tar.gz`](linux/Tellus-0.1.4-linux-x64.tar.gz) | Unpack it and run `./tellus`. Keep `tigrim` beside it. See the Linux notes below. |
 
 The current version is 0.1.4.
 
 | Version | What changed |
 |---|---|
-| 0.1.4 | Redesigned window: Home page, five numbered steps with their own panels, Calculate and Output in the top bar, a floating calculation card, the Curves window and colour palettes in Output. New app icon. Fixes to interfaces and embedded piles. Without a key, every start asks for a key or the free academic edition |
+| 0.1.4 | Redesigned window: Home page, five numbered steps with their own panels, Calculate and Output in the top bar, a floating calculation card, the Curves window and colour palettes in Output. New app icon. First Linux build. Fixes to interfaces and embedded piles. Without a key, every start asks for a key or the free academic edition |
 | 0.1.3 | A plate along the edge of a soil cluster meshes correctly at every element size. The free edition refuses a mesh above its limit when the mesh is generated |
 | 0.1.2 | The free academic edition, which runs without a key |
 
@@ -133,6 +134,16 @@ structures, water and mesh, and the cases the program is calibrated on. It was w
 with the development version of 12 November 2026, so a few things it describes are not in
 0.1.4 yet: dynamic analysis (Chapter 8), the updated mesh option, and calculation on a
 cloud GPU.
+
+**Linux notes.** Unpack the archive with `tar xzf Tellus-0.1.4-linux-x64.tar.gz` and start
+`./tellus` in the folder. Tellus needs a desktop with OpenGL, and on a minimal system the
+usual desktop libraries, which on Ubuntu or Debian are installed with
+`sudo apt install libgl1 libegl1 libxkbcommon-x11-0 libxcursor1 libxi6 libxrandr2 ca-certificates`.
+The archive also holds an icon and a `tellus.desktop` entry for the applications menu, and
+its `README.txt` explains where to copy them. The Linux build is new in 0.1.4 and has been
+tested on Ubuntu 22.04 only, so please report any problem. It is protected by the same
+licence key as the other systems: without a key it runs as the free academic edition, and
+`./tellus --activate <key>` or the start screen activates it.
 
 The programs are not signed by a registered developer, so the system warns you the first
 time. On macOS, right-click **Tellus** in Applications, choose **Open**, and confirm with
@@ -187,7 +198,7 @@ because anyone with the key could use one of your seats.
 Start Tellus while connected to the internet. The first screen asks for the key, so paste
 it into the box and click **Activate**. Upper or lower case and spaces do not matter.
 
-![The key box of the start screen, with an example key pasted in](docs/images/activation.png)
+![The start screen of Tellus 0.1.4: the key box with Activate, and Continue with the free academic edition](docs/images/activation.png)
 
 Tellus checks the key with the licence server and opens the normal workspace. The top bar
 then shows who the copy is licensed to, which confirms that activation worked.
