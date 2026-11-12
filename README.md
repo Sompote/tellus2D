@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/images/tellus-logo.png" alt="Tellus logo" width="420">
+  <img src="docs/images/tellus-icon.png" alt="Tellus 2D icon" width="160">
 </p>
 
-# Tellus: download and licence
+# Tellus 2D: download and licence
 
 Tellus is a plane-strain geotechnical finite element program for engineers. It builds and
 calculates excavations, embankments, slopes and foundations with staged construction,
@@ -18,37 +18,55 @@ without a key, or paste a licence key from [tellusfem@gmail.com](mailto:tellusfe
 into the activation screen. Activation needs the internet once, and after that Tellus runs
 on your computer like any desktop program.
 
-![Tellus with the chat agent: for a slope under normal water and drawdown the agent ran two Safety phases, wrote the PDF report and showed the failure mechanisms, while Output shows the drawdown mechanism](docs/images/tellus-agent-report.png)
+![Tellus 2D 0.1.4: Output shows the failure mechanism and the factor of safety of a strutted excavation, with the five steps, Calculate, Output and Assistant across the top](docs/images/tellus-output.png)
 
 ## What Tellus does
 
 Tellus covers the everyday finite element work of a geotechnical engineer in one program,
 and it runs entirely on your own computer, so a calculation needs no other FE software
-or network service once the licence is active. You build a model in the **Input**
-workspace, calculate it with the built-in solver, and read the results in **Output**,
-whereas the **Chat assistant** can do the same steps from a description in words. The
-same model can also be driven by AI assistants such as Claude and ChatGPT through Tellus's
-MCP server ([Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)), so an
-assistant and an engineer can work on one project file.
+or network service once the licence is active. You build a model in five numbered steps,
+calculate it with the built-in solver and read the results in **Output**, whereas the
+**Assistant** can do the same steps from a description in words. The same model can also
+be driven by AI assistants such as Claude and ChatGPT through Tellus's MCP server
+([Step 4](#step-4-optional-connect-claude-or-chatgpt-through-mcp)), so an assistant and an
+engineer can work on one project file.
 
-**Modelling.** The Input workspace follows six steps, each a tab across the top: Soil,
-Geometry, Structures, Mesh, Flow conditions and Staged construction. The soil comes from
-one or more boreholes, which give sloping strata between them, or from soil polygons drawn
-with the mouse for embankments and irregular ground. Anything in the drawing can be
-picked to edit its properties, and the Model explorer shows the whole model as an
-editable tree.
+**The window in 0.1.4.** Tellus opens on a **Home** page, where a model starts from a soil
+profile, from drawn geometry or from a description for the assistant, and where recent
+projects reopen. A bar across the top then leads through the work: **1 Soil**,
+**2 Structures**, **3 Water**, **4 Mesh** and **5 Stages**, followed by **Calculate**,
+**Output** and **Assistant**. Each step has its own panel on the left and a **Next** button
+to the following step, the project name opens the file menu, two arrows undo and redo any
+edit, and the window has a light and a dark theme.
+
+![The Home page: start from a soil profile, from drawn geometry, or describe the model to the assistant](docs/images/tellus-home.png)
+
+| Step | What you define |
+|---|---|
+| 1 Soil | Model width, boreholes and layer levels, soil clusters, soil materials |
+| 2 Structures | Supports, plates, anchors, struts, embedded piles, geogrids, loads, fixities |
+| 3 Water | Water levels and which boundaries drain |
+| 4 Mesh | Element size, triangles or a structured mesh, local refinement, mesh quality |
+| 5 Stages | The phases: type, soil and structures in place, loads and water |
+
+**Modelling.** The soil comes from one or more boreholes, which give sloping strata between
+them, or from soil polygons drawn with the mouse for embankments and irregular ground.
+Anything in the drawing can be picked to edit its properties, and a material dialog holds
+the soils and the plate, anchor, pile and geogrid materials.
+
+![Step 1 Soil: the model extent, the layers of a borehole, soil clusters and materials](docs/images/tellus-soil.png)
 
 **Soil models.** Tellus offers linear elastic, Mohr-Coulomb with drained and Undrained A, B
 and C behaviour, Hardening Soil and HS small for stiffness that depends on stress and
 strain, Soft Soil and Soft Soil Creep for soft clays, and a hypoplastic model for sand
 that follows its density.
 
-<img src="docs/images/tellus-material-model.png" alt="The Soil materials card with the list of material models open" width="420">
-
 **Structures and loads.** Plates model walls and sheet piles, either elastic or
 elastoplastic with plastic hinges, with interfaces on either side. Spring supports model
 struts and anchors, geogrids model reinforcement, and embedded piles carry load by skin
 friction and base resistance. Line and point loads complete the model.
+
+![Step 2 Structures: a sheet-pile wall with interfaces, a strut and a surcharge](docs/images/tellus-structures.png)
 
 **Construction stages and groundwater.** Each phase can excavate or place soil, switch
 structures and loads on or off, and change the water. Phases are plastic, consolidation
@@ -57,22 +75,26 @@ loading. Groundwater is set per phase as phreatic levels or as steady-state flow
 the drainage of each model side chosen for flow and consolidation.
 
 **Mesh and solver.** The mesh uses 15-node triangles, or structured 25-node rectangles,
-with local refinement. The solver was checked against analytical solutions, a reference FE
-code and published examples.
+with local refinement, and the Mesh step reports the element count and the mesh quality.
+The solver was checked against analytical solutions, a reference FE code and published
+examples.
+
+![Step 4 Mesh: element size, refinement of the wall and the statistics of the mesh](docs/images/tellus-mesh.png)
 
 **Results.** Output plots any phase as a deformed mesh or as contours of displacement,
-stress and pore pressure, and hovering the plot reads the values at the nodes. Plates show
-axial force, shear force and bending moment diagrams along their length, and the log gives
-the forces in struts, geogrids and piles. A Safety phase reports its factor of safety
-ΣMsf, while the incremental displacements show the failure mechanism. The Curves manager
-plots displacement or excess pore pressure at chosen points against step, time or ΣMsf,
-for example settlement against time during consolidation.
+stress and pore pressure, in a Rainbow, Warming or Viridis palette, and hovering the plot
+reads the values. Plates show axial force, shear force and bending moment diagrams along
+their length, and the log gives the forces in struts, geogrids and piles. A Safety phase
+reports its factor of safety ΣMsf, while the displacements show the failure mechanism. The
+Curves window plots displacement or excess pore pressure at picked points against step,
+time or ΣMsf, for example settlement against time during consolidation, and copies the
+data for a spreadsheet.
 
-![Tellus Output: bending moment diagram along a 6 m plate under a line load](docs/images/tellus-plate-moment.png)
+![Output: the bending moment diagram along a sheet-pile wall](docs/images/tellus-plate-moment.png)
 
-![A slope stability analysis in Output: factor of safety ΣMsf = 1.530 with the displacement contours showing the failure mechanism, beside the chat panel](docs/images/tellus-agent-slope.png)
+![The Curves window: the settlement of a picked point against the calculation step](docs/images/tellus-curves.png)
 
-**Chat assistant.** The Chat assistant opens beside the model, so the model stays in view
+**Assistant.** The Assistant opens beside the model, so the model stays in view
 while you describe a problem, for example "a 3 m wide strip footing on 5 m of dense sand
 over stiff clay carries 150 kPa, the water table is 2 m down; what is the settlement and
 the factor of safety?". Tellus then builds the model, calculates it and answers with the
@@ -96,8 +118,13 @@ are recalculated rather than stored. Tellus can also read PLAXIS 2D results file
 | macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.4-macos-universal.dmg`](macos/Tellus-0.1.4-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
 | Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.4-windows-x64.zip`](windows/Tellus-0.1.4-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
 
-The current version is 0.1.4. It has the redesigned window, in which a model is built in
-five numbered steps (Soil, Structures, Water, Mesh, Stages), and the mesh fixes of 0.1.3.
+The current version is 0.1.4.
+
+| Version | What changed |
+|---|---|
+| 0.1.4 | Redesigned window: Home page, five numbered steps with their own panels, Calculate and Output in the top bar, a floating calculation card, the Curves window and colour palettes in Output. New app icon. Fixes to interfaces and embedded piles. Without a key, every start asks for a key or the free academic edition |
+| 0.1.3 | A plate along the edge of a soil cluster meshes correctly at every element size. The free edition refuses a mesh above its limit when the mesh is generated |
+| 0.1.2 | The free academic edition, which runs without a key |
 
 **User manual.** [`docs/Tellus2D_user_manual.pdf`](docs/Tellus2D_user_manual.pdf) (62 pages)
 explains the installation, the licence key and the assistant's API key, the window step by
@@ -160,16 +187,16 @@ because anyone with the key could use one of your seats.
 Start Tellus while connected to the internet. The first screen asks for the key, so paste
 it into the box and click **Activate**. Upper or lower case and spaces do not matter.
 
-![The activation screen of Tellus, with a key pasted into the box](docs/images/activation.png)
+![The key box of the start screen, with an example key pasted in](docs/images/activation.png)
 
 Tellus checks the key with the licence server and opens the normal workspace. The top bar
 then shows who the copy is licensed to, which confirms that activation worked.
 
-![Tellus after activation, with "Licensed to" shown at the right of the top bar](docs/images/activated.png)
+![The top bar after activation, with "Licensed to" at the right](docs/images/activated.png)
 
 ## Step 3 (optional): set up the chat agent
 
-The chat assistant is optional, because every model can also be built by hand in Input.
+The assistant is optional, because every model can also be built by hand in the five steps.
 We recommend the **TigrimOS agent** with a model from **OpenRouter**, a service that gives
 one API key for many AI models and charges per use. Its recommended model is
 **DeepSeek V4.1 Flash** (`deepseek/deepseek-v4.1-flash-1017`), the model Tellus was tested
@@ -189,7 +216,7 @@ goes to OpenRouter and is separate from the Tellus subscription.
 
 **Enter it in Tellus.**
 
-1. Click **Chat assistant** at the top right, choose **TigrimOS agent** in the list next to
+1. Click **Assistant** at the top right, choose **TigrimOS agent** in the list next to
    **Assistant**, and click **Settings**.
 2. Leave **tigrim** empty, because Tellus finds the agent program that comes with it.
 3. Fill in the three fields:
@@ -203,7 +230,7 @@ goes to OpenRouter and is separate from the Tellus subscription.
 4. Click **Save key** and then **Done**. The key stays on your computer, in your user
    settings folder, and Tellus gives it only to the agent.
 
-![The chat assistant's settings for the TigrimOS agent, with the OpenRouter API URL, the model deepseek/deepseek-v4.1-flash-1017 and a saved API key](docs/images/agent-settings.png)
+![The Assistant panel with the settings of the TigrimOS agent: the OpenRouter API URL, a model name and a saved API key](docs/images/agent-settings.png)
 
 **Python for the agent** is optional. When Python with numpy is installed, Tellus finds it
 and the agent may use it for numbers, such as a hand check of a result, and without it the
@@ -307,7 +334,7 @@ for example after your subscription was renewed. **Deactivate this computer** fr
 seat, so you can activate the same key on a new computer. Deactivate before you replace
 or reinstall a computer, because a seat stays taken until it is released.
 
-![The licence window, with the key, plan, subscription end and the deactivate button](docs/images/licence-window.png)
+![The licence card, with the key (masked here), plan, subscription end and the deactivate button](docs/images/licence-window.png)
 
 ## Working offline
 
