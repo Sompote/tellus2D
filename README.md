@@ -259,6 +259,12 @@ junior engineer's.
 
 ## Step 4 (optional): connect Claude or ChatGPT through MCP
 
+**Give your assistant the briefing file.** [`agent_info.md`](agent_info.md) tells an AI
+agent how to work with Tellus: the units and conventions, the workflow and the tools, the
+mistakes to avoid, how to report results, the limits of the free academic edition, and how
+to run an analysis on a remote Linux computer over SSH. Attach it to your first message, or
+tell Claude Code "read agent_info.md before you use Tellus".
+
 Tellus can also be driven from an AI assistant outside the program, such as Claude Desktop,
 Claude Code, the ChatGPT desktop app or Codex, through the Model Context Protocol (MCP).
 The command `tellus --mcp` starts Tellus without a window as an MCP server that the
