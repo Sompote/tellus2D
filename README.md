@@ -20,6 +20,23 @@ on your computer like any desktop program.
 
 ![Tellus 2D 0.1.4: Output shows the failure mechanism and the factor of safety of a strutted excavation, with the five steps, Calculate, Output and Assistant across the top](docs/images/tellus-output.png)
 
+## Updates
+
+**12 November 2026**
+
+| What is new | Where |
+|---|---|
+| **Tellus 0.1.4** for macOS and Windows, with the redesigned window: a Home page, five numbered steps (Soil, Structures, Water, Mesh, Stages), Calculate and Output in the top bar, the Curves window and colour palettes | [Download](#download) |
+| **Linux build**, the first one: 64-bit, protected by the same licence key, with the free academic edition without a key | [`linux/`](linux), [Linux notes](#download) |
+| **User manual**, 62 pages: installation, the licence key and the assistant's API key, the window step by step, MCP with Claude Code and TellusHive, structures, water and mesh, case studies and calibration | [`docs/Tellus2D_user_manual.pdf`](docs/Tellus2D_user_manual.pdf) |
+| **Briefing file for AI agents**: how an assistant should work with Tellus and run it on a remote Linux computer | [`agent_info.md`](agent_info.md) |
+| **Calibration papers**: static analysis, dynamic analysis and embedded pile rows | [`docs/papers`](docs/papers), [Calibration papers](#calibration-papers) |
+| **New app icon**, and screenshots of the current window throughout this page | this page |
+
+Earlier versions: 0.1.3 fixed the mesh along a plate on the edge of a soil cluster, and
+0.1.2 added the free academic edition. The [Download](#download) section has the table of
+changes by version.
+
 ## What Tellus does
 
 Tellus covers the everyday finite element work of a geotechnical engineer in one program,
