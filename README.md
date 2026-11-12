@@ -93,8 +93,19 @@ are recalculated rather than stored. Tellus can also read PLAXIS 2D results file
 
 | System | File | Notes |
 |---|---|---|
-| macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.2-macos-universal.dmg`](macos/Tellus-0.1.2-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
-| Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.2-windows-x64.zip`](windows/Tellus-0.1.2-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
+| macOS 11 or later, Intel or Apple Silicon | [`macos/Tellus-0.1.4-macos-universal.dmg`](macos/Tellus-0.1.4-macos-universal.dmg) | Open the DMG and drag **Tellus** into **Applications**. |
+| Windows 10 or 11, 64-bit | [`windows/Tellus-0.1.4-windows-x64.zip`](windows/Tellus-0.1.4-windows-x64.zip) | Unzip the folder anywhere and run `Tellus.exe`. Keep `tigrim.exe` beside it, because the chat assistant uses it. |
+
+The current version is 0.1.4. It has the redesigned window, in which a model is built in
+five numbered steps (Soil, Structures, Water, Mesh, Stages), and the mesh fixes of 0.1.3.
+
+**User manual.** [`docs/Tellus2D_user_manual.pdf`](docs/Tellus2D_user_manual.pdf) (62 pages)
+explains the installation, the licence key and the assistant's API key, the window step by
+step on a strutted excavation, the use through MCP with Claude Code and with TellusHive,
+structures, water and mesh, and the cases the program is calibrated on. It was written
+with the development version of 12 November 2026, so a few things it describes are not in
+0.1.4 yet: dynamic analysis (Chapter 8), the updated mesh option, and calculation on a
+cloud GPU.
 
 The programs are not signed by a registered developer, so the system warns you the first
 time. On macOS, right-click **Tellus** in Applications, choose **Open**, and confirm with
@@ -105,7 +116,7 @@ models, whereas 8 GB is comfortable for fine meshes.
 ## The free academic edition
 
 Tellus needs no key for teaching and learning. At the first start click **Continue with
-the free academic edition**, and Tellus remembers the choice and opens in it from then on.
+the free academic edition**, which Tellus offers at every start until a key is entered.
 The free edition needs no internet, and it calculates any model that stays within these
 limits, which are enough for the footing, slope, retaining wall and embankment problems of
 a soil mechanics or foundation engineering course:
